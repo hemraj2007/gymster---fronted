@@ -1,0 +1,773 @@
+/********** Template CSS **********/
+:root {
+    --primary: #FB5B21;
+    --secondary: #BDBDBF;
+    --light: #F4F5F8;
+    --dark: #222429;
+}
+
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
+    font-size: inherit;
+    margin-left: 0;
+}
+
+h1,
+h2,
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+h3,
+h4,
+.font-weight-semi-bold {
+    font-weight: 600 !important;
+}
+
+h5,
+h6,
+.font-weight-medium {
+    font-weight: 500 !important;
+}
+
+.btn {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    transition: .5s;
+}
+
+.btn-primary {
+    color: #FFFFFF;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 30px;
+    height: 30px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 0;
+    border-radius: 0;
+    z-index: 99;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    font-family: 'Oswald', sans-serif;
+    margin-right: 30px;
+    padding: 40px 0;
+    color: var(--light);
+    font-size: 17px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+    .navbar-dark .navbar-nav .nav-link  {
+        margin-right: 0;
+        padding: 10px 0;
+    }
+}
+
+.carousel-caption {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(34, 36, 41, .8);
+    z-index: 1;
+}
+
+@media (max-width: 576px) {
+    .carousel-caption h4 {
+        font-size: 18px;
+        font-weight: 500 !important;
+    }
+
+    .carousel-caption h1 {
+        font-size: 30px;
+        font-weight: 600 !important;
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 10%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.bg-hero {
+    background: linear-gradient(rgba(34, 36, 41, .8), rgba(34, 36, 41, .8)), url(../img/carousel-1.jpg) top center no-repeat;
+    background-size: cover;
+}
+
+.programe::after {
+    position :absolute;
+    content: "";
+    width: 100%;
+    height: calc(100% - 45px);
+    top: 135px;
+    left: 0;
+    background: var(--dark);
+    z-index: -1;
+}
+
+.team-item img {
+    transition: .5s;
+}
+
+.team-item:hover img {
+    transform: scale(1.2);
+}
+
+.team-item .team-overlay {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    bottom: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(34, 36, 41, .9);
+    transition: .5s;
+    opacity: 0;
+}
+
+.team-item:hover .team-overlay {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+}
+
+.testimonial-carousel .owl-nav {
+    margin-top: 30px;
+    display: flex;
+    justify-content: start;
+}
+
+.testimonial-carousel .owl-nav .owl-prev,
+.testimonial-carousel .owl-nav .owl-next{
+    position: relative;
+    margin: 0 5px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    background: var(--primary);
+    font-size: 22px;
+    border-radius: 45px;
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-nav .owl-prev:hover,
+.testimonial-carousel .owl-nav .owl-next:hover {
+    color: var(--dark);
+}
+
+.testimonial-carousel .owl-item img {
+    width: 90px;
+    height: 90px;
+}
+
+.blog-item img {
+    transition: .5s;
+}
+
+.blog-item:hover img {
+    transform: scale(1.2);
+}
+
+@media (min-width: 991.98px) {
+    .credit {
+        background: var(--primary);
+    }
+}
+
+
+/* join (login) */
+
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 2rem;
+  background: #1f1f1f;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #FB5B21;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.login-container input:focus {
+  outline: none;
+  background: #444;
+  box-shadow: 0 0 0 2px #FB5B21;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background: #FB5B21;
+  color: #000;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.login-container button:hover {
+  background: #FB5B21;
+}
+
+
+
+/* signup  */
+
+/* SignupForm.css */
+
+.signup-container {
+  max-width: 450px;
+  margin: 80px auto;
+  padding: 40px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.signup-container:hover {
+  transform: translateY(-5px);
+}
+
+.signup-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form label {
+  margin-bottom: 5px;
+  color: #444;
+  font-weight: 600;
+}
+
+.signup-form input,
+.signup-form select {
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.signup-form input:focus,
+.signup-form select:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+}
+
+.signup-form button {
+  background: #FB5B21;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.signup-form button:hover {
+  background: linear-gradient(to right, #5a67d8, #6b46c1);
+  transform: scale(1.02);
+}
+
+.signup-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.signup-message.success {
+  color: green;
+}
+
+.signup-message.error {
+  color: red;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 500px) {
+  .signup-container {
+    margin: 30px 20px;
+    padding: 25px;
+  }
+
+  .signup-title {
+    font-size: 24px;
+  }
+
+  .signup-form input,
+  .signup-form select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .signup-form button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+
+/* profile  */
+
+
+.profile-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.profile-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.profile-info {
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.profile-toggle-btn {
+  padding: 10px 20px;
+  background-color: #FB5B21;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 15px;
+  transition: 0.3s ease;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-submit-btn {
+  background-color: #FB5B21;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.profile-message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.profile-toggle-btn:hover,
+.profile-submit-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* update password */
+
+.update-password-page {
+  max-width: 400px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.password-input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-update-btn {
+  padding: 10px 20px;
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.password-message {
+  margin-top: 1rem;
+}
+
+.password-message.success {
+  color: green;
+}
+
+.password-message.error {
+  color: red;
+}
+
+
+/* membership */
+
+/* Membership Container Styles */
+.membership-container {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f7f7f7;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Title Styles */
+.membership-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Grid Layout for Plans */
+.membership-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Card Styles for Each Plan */
+.membership-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.membership-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Plan Name Styling */
+.membership-card h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Price Styling */
+.membership-price {
+  font-size: 2rem;
+  color: #009688;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+/* Duration Styling */
+.membership-duration {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Button Styling */
+.membership-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.membership-button:hover {
+  background-color: #00796b;
+  transform: translateY(-3px);
+}
+
+/* Hover Effect for Button */
+.membership-button:active {
+  transform: translateY(2px);
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .membership-grid {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .membership-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+
+/* membership */
+
+/* ====== Membership Container ====== */
+.membership-container {
+  padding: 40px 20px;
+  max-width: 1300px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+}
+
+/* ====== Typography ====== */
+.membership-container h2,
+.membership-container h4 {
+  font-weight: 700;
+  color: #111;
+}
+
+.membership-container p {
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ====== Grid Layout ====== */
+.membership-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* ====== Plan Card ====== */
+.membership-plan-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.membership-plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: #007bff;
+}
+
+/* ====== Plan Content ====== */
+.plan-card-content {
+  padding: 25px;
+}
+
+.plan-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* ====== Price Section ====== */
+.price-container {
+  margin-bottom: 20px;
+}
+
+.plan-price {
+  font-size: 1.8rem;
+  color: #000;
+  font-weight: 700;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.9rem;
+  margin-right: 10px;
+}
+
+.discount-badge {
+  background: #ff4757;
+  color: white;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* ====== Benefits Section ====== */
+.plan-details p {
+  margin: 6px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* ====== Motivation Text ====== */
+.plan-motivation {
+  margin: 20px 0 0;
+  font-weight: 500;
+  font-style: italic;
+  color: #444;
+}
+
+/* ====== Button ====== */
+.custom-plan-button {
+  border: none;
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-plan-button:hover {
+  background-color: #0056b3;
+}
+
+/* ====== Small Note ====== */
+.custom-plan-note {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* ====== Responsive Fixes ====== */
+@media (max-width: 600px) {
+  .plan-price {
+    font-size: 1.5rem;
+  }
+
+  .membership-container {
+    padding: 20px 10px;
+  }
+}
+
+.current-plan {
+  border: 2px solid #4CAF50;
+  position: relative;
+}
+
+.current-plan-badge {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: #4CAF50;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.current-plan-banner {
+  border-left: 5px solid #4CAF50;
+}
+
+.upgrade-benefit {
+  color: #28a745;
+  font-size: 14px;
+}
+
+.btn-success {
+  background-color: #28a745;
+}
+
+/* Discount styling */
+.discount-badge {
+  background: #ffc107;
+  color: #000;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
