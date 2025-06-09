@@ -24,16 +24,23 @@ export const UserProvider = ({ children }) => {
   // Login function with role check (only 'user' allowed)
   const login = async (email, password) => {
     try {
+      // Step 1: Attempt login
       const response = await axios.post('http://127.0.0.1:8000/auth/login', {
         email,
         password,
       });
 
-      const { access_token } = response.data;
+      // Step 2: If token not found, something's wrong
+      const { access_token } = response.data || {};
+      if (!access_token) {
+        console.warn("Access token not received");
+        return false;
+      }
+
+      // Step 3: Save token and fetch profile
       localStorage.setItem('token', access_token);
       setToken(access_token);
 
-      // Fetch user profile immediately after login
       const profileResponse = await axios.get('http://127.0.0.1:8000/users/profile', {
         headers: {
           Authorization: `Bearer ${access_token}`,
@@ -42,19 +49,34 @@ export const UserProvider = ({ children }) => {
 
       const userProfile = profileResponse.data;
 
-      // Check if role is 'user', else reject login
+      // Step 4: Check user role
       if (userProfile.role !== 'user') {
-        logout();  // Clear token and user info if role not allowed
+        logout(); // Clear token & user
+        console.warn("Unauthorized role:", userProfile.role);
         return false;
       }
 
+      // Step 5: All good — login successful
       setUser(userProfile);
       return true;
+
     } catch (error) {
-      console.error('Login error:', error);
+      // Graceful error handling
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        console.warn("Login failed:", error.response.data?.detail || "Invalid credentials");
+      } else if (error.request) {
+        // No response received
+        console.error("No response from server");
+      } else {
+        // Other error
+        console.error("Login error:", error.message);
+      }
+
       return false;
     }
   };
+
 
   // Fetch user profile (for token persistence on reload)
   const fetchUserProfile = async (token) => {

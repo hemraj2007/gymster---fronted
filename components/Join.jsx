@@ -2,12 +2,13 @@
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login, user } = useContext(UserContext);
+  const { login } = useContext(UserContext);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -20,19 +21,19 @@ export default function LoginPage() {
     }
   };
 
-  // No need for useEffect redirect - router.push handles it
-
   return (
-    <div className="login-form">
-      <h2>Login</h2>
-      {error && <div className="error">{error}</div>}
-      <form onSubmit={handleSubmit}>
+    <div className="login-container">
+      <h2 className="login-title">Login</h2>
+      {error && <div className="login-error">{error}</div>}
+
+      <form onSubmit={handleSubmit} className="login-form">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
+          className="login-input"
         />
         <input
           type="password"
@@ -40,9 +41,19 @@ export default function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
+          className="login-input"
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
+
+      <p className="login-signup-text">
+        Don't have an account?{' '}
+        <Link href="/signup">
+          <button type="button" className="signup-button">Sign Up</button>
+        </Link>
+      </p>
     </div>
   );
 }
