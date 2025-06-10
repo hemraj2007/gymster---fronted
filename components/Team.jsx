@@ -13,7 +13,7 @@ export default function Team() {
     // Function to fetch trainers data from API
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:8000/trainers/all_trainers")
+            .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/all_trainers`)
             .then((response) => {
                 setTrainers(response.data);
                 setLoading(false);

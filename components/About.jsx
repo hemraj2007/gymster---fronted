@@ -13,7 +13,7 @@ export default function Footer() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/admin_profile/all");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin_profile/all`);
         const data = await response.json();
         
         // Assuming the API returns an array, we take the first item

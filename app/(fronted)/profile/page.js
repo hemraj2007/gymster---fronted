@@ -56,7 +56,7 @@ export default function ProfilePage() {
     
     try {
       const response = await axios.put(
-        `http://127.0.0.1:8000/users/update_profile/${user.id}`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/update_profile/${user.id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

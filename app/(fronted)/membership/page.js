@@ -16,13 +16,13 @@ export default function MembershipPlans() {
     // 🧠 Fetch all plans
     const fetchData = async () => {
       try {
-        const plansRes = await fetch("http://127.0.0.1:8000/membership_plans/all");
+        const plansRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/all`);
         const plansData = await plansRes.json();
         setPlans(Array.isArray(plansData) ? plansData : plansData.data || []);
 
         // If user is logged in, fetch their current membership
         if (user?.id) {
-          const subsRes = await fetch(`http://127.0.0.1:8000/membership/user/${user.id}`);
+          const subsRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership/user/${user.id}`);
           const subsData = await subsRes.json();
           if (subsData.length > 0) {
             setCurrentPlan(subsData[0]); // Consider the latest plan as current

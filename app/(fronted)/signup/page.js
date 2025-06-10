@@ -30,7 +30,7 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/auth/register`, formData);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register`, formData);
       setMessage('Sign up successful!');
       console.log(response.data);
       setTimeout(() => {

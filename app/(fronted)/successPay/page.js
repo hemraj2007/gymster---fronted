@@ -37,7 +37,7 @@ const SuccessPay = () => {
         }
 
         // Fetch all plans
-        const plansResponse = await fetch("http://127.0.0.1:8000/membership_plans/all");
+        const plansResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/all`);
         if (!plansResponse.ok) throw new Error("Failed to fetch plans");
         const allPlans = await plansResponse.json();
 
@@ -74,7 +74,7 @@ const SuccessPay = () => {
           payment_status: "paid",
         };
 
-        const response = await fetch("http://127.0.0.1:8000/membership/add", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership/add`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

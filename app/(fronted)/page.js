@@ -8,7 +8,7 @@ export default function Blog() {
   useEffect(() => {
     const fetchSliders = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/slider/all");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/slider/all`);
         const data = await res.json();
         setSliders(data.filter((item) => item.status === "yes"));
       } catch (error) {
@@ -28,7 +28,7 @@ export default function Blog() {
   // Function to fetch trainers data from API
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/trainers/all_trainers")
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/all_trainers`)
       .then((response) => {
         setTrainers(response.data);
         setLoading(false);
@@ -57,7 +57,7 @@ export default function Blog() {
     const fetchClasses = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://127.0.0.1:8000/classes/all", {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classes/all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -81,7 +81,7 @@ export default function Blog() {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/admin_profile/all");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin_profile/all`);
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
           setProfileData(data[0]);

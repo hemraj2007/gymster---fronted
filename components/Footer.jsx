@@ -14,7 +14,7 @@ export default function Footer() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/admin_profile/all");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin_profile/all`);
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
           setAddress(data[0].address);

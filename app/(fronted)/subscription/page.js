@@ -16,7 +16,7 @@ const SubscriptionPage = () => {
       }
 
       try {
-        const response = await fetch(`http://127.0.0.1:8000/membership/user/${user.id}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership/user/${user.id}`);
 
         if (response.status === 404) {
           // No subscriptions found

@@ -11,7 +11,7 @@ export const AdminProvider = ({ children }) => {
   // Profile fetch karne wali function
   const fetchProfile = async (token) => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/users/profile", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,7 +37,7 @@ export const AdminProvider = ({ children }) => {
   // Login function
   const login = async (email, password) => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/auth/login", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

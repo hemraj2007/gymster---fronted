@@ -20,7 +20,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://127.0.0.1:8000/contact/create", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
