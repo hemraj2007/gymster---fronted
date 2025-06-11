@@ -17,7 +17,7 @@ export default function EditMembershipPage() {
   const id = params.id;
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/membership_plans/${id}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const safeData = {
@@ -34,7 +34,7 @@ export default function EditMembershipPage() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://127.0.0.1:8000/membership_plans/update/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/update/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

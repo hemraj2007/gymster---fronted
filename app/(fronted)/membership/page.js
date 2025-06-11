@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import getStripe from "@/lib/getStripe";
@@ -13,24 +12,24 @@ export default function MembershipPlans() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    // 🧠 Fetch all plans
     const fetchData = async () => {
       try {
+        // ✅ Fetch all plans
         const plansRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/all`);
         const plansData = await plansRes.json();
         setPlans(Array.isArray(plansData) ? plansData : plansData.data || []);
 
-        // If user is logged in, fetch their current membership
+        // ✅ Fetch user subscription if logged in
         if (user?.id) {
           const subsRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership/user/${user.id}`);
           const subsData = await subsRes.json();
-          if (subsData.length > 0) {
-            setCurrentPlan(subsData[0]); // Consider the latest plan as current
+          if (Array.isArray(subsData) && subsData.length > 0) {
+            setCurrentPlan(subsData[0]);
           }
         }
       } catch (err) {
-        console.error("Failed to fetch data", err);
-        toast.error("Something went wrong. Please try again.");
+        console.error("Data fetch nahi ho paya", err);
+        toast.error("Kuch gadbad ho gayi. Phir try karo");
       }
     };
 
@@ -40,14 +39,13 @@ export default function MembershipPlans() {
   const handleAction = async (plan) => {
     const token = localStorage.getItem("token");
     if (!token) {
-      toast.error("Please login first!");
+      toast.error("Pehle login karo!");
       router.push("/join");
       return;
     }
 
-    // If user already has this plan
     if (currentPlan?.membership_id === plan.id) {
-      toast("You already have this plan.");
+      toast("Ye plan aap already le chuke ho");
       return;
     }
 
@@ -63,41 +61,42 @@ export default function MembershipPlans() {
           planId: plan.id,
           amount: plan.final_price,
           userId: user.id,
-          isUpgrade: currentPlan ? true : false
+          isUpgrade: !!currentPlan,
         }),
       });
 
-      if (!res.ok) throw new Error("Could not initiate payment");
+      if (!res.ok) throw new Error("Payment shuru nahi ho paya");
 
       const { id: sessionId } = await res.json();
-      toast.loading("Redirecting to payment page...");
+      toast.loading("Payment page pe redirect ho rahe hain...");
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
       console.error("Payment error:", error);
-      toast.error("Payment failed. Please try again.");
+      toast.error("Payment fail ho gaya. Phir try karo");
     }
   };
 
   const isCurrentPlan = (plan) => currentPlan?.membership_id === plan.id;
   const isUpgradeOption = (plan) =>
-    currentPlan &&
-    plan.id !== currentPlan.membership_id &&
-    plan.price > plans.find(p => p.id === currentPlan.membership_id)?.price;
+    currentPlan && plan.id !== currentPlan.membership_id;
 
   return (
     <div className="membership-container">
       <div className="text-center mb-5">
-        <h2 className="text-uppercase mb-3">Start Your Fitness Journey</h2>
+        <h2 className="text-uppercase mb-3">Apna Fitness Journey Shuru Karein</h2>
         {currentPlan ? (
           <div className="current-plan-banner mb-4 p-3 bg-light rounded">
-            <h4>Your Current Plan: <strong>{plans.find(p => p.id === currentPlan.membership_id)?.name}</strong></h4>
+            <h4>
+              Aapka Current Plan:{" "}
+              <strong>{plans.find(p => p.id === currentPlan.membership_id)?.name}</strong>
+            </h4>
             <p>
               Valid till: {new Date(currentPlan.expiry_date).toLocaleDateString()}
             </p>
           </div>
         ) : (
           <p className="lead mb-4">
-            Choose the perfect plan today and achieve your fitness goals!
+            Aaj hi apna perfect plan chuno aur fitness goals achieve karo!
           </p>
         )}
       </div>
@@ -120,7 +119,7 @@ export default function MembershipPlans() {
 
                 {isCurrent && (
                   <div className="current-plan-badge">
-                    Your Current Plan
+                    Aapka Current Plan
                   </div>
                 )}
 
@@ -131,7 +130,7 @@ export default function MembershipPlans() {
                   <h5 className="plan-price">₹{finalPrice}</h5>
                   {hasDiscount && (
                     <span className="discount-badge">
-                      {plan.discount}% Off
+                      {plan.discount}% Bachat
                     </span>
                   )}
                 </div>
@@ -142,7 +141,7 @@ export default function MembershipPlans() {
                   <p><i className="bi bi-check-circle me-2"></i>Free Fitness Assessment</p>
                   <p><i className="bi bi-check-circle me-2"></i>
                     {plan.duration === "Yearly" ? "12" :
-                      plan.duration === "Half Yearly" ? "6" : "1"} Personal Training Sessions
+                      plan.duration === "Half Yearly" ? "6" : "1"} Personal Training
                   </p>
                 </div>
 
@@ -152,25 +151,25 @@ export default function MembershipPlans() {
                   disabled={isCurrent}
                 >
                   {isCurrent ? "Active Plan" :
-                    isUpgrade ? "Upgrade Now" : "Subscribe Now"}
+                    isUpgrade ? "Upgrade Karo" : "Subscribe Karo"}
                 </button>
 
                 {isUpgrade && (
                   <p className="upgrade-benefit mt-2">
-                    <i className="bi bi-arrow-up-circle-fill text-success"></i> 
-                    Save up to {plan.duration === "Yearly" ? "40%" : "20%"} by upgrading
+                    <i className="bi bi-arrow-up-circle-fill text-success"></i>{" "}
+                    Is plan mein upgrade karke faida uthao!
                   </p>
                 )}
               </div>
             </div>
           );
         })}
-      </div> 
+      </div>
 
       <div className="text-center mt-5">
-        <h4 className="mb-3">Still thinking?</h4>
+        <h4 className="mb-3">Abhi bhi soch rahe ho?</h4>
         <p>
-          "Once you start, motivation will follow. Today's decision builds a better tomorrow!"
+          "Ek baar start kar do, motivation khud aa jayega. Aaj ka decision kal ki better life ka foundation hai!"
         </p>
       </div>
     </div>

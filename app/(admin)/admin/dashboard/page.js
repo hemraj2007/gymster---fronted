@@ -14,11 +14,11 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const [uRes, sRes, tRes, mRes, cRes] = await Promise.all([
-          fetch('http://127.0.0.1:8000/users/users'),
-          fetch('http://127.0.0.1:8000/slider/all'),
-          fetch('http://127.0.0.1:8000/trainers/all_trainers'),
-          fetch('http://127.0.0.1:8000/membership_plans/all'),
-          fetch('http://127.0.0.1:8000/contact/all'),
+          fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/users`),
+          fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/slider/all`),
+          fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/all_trainers`),
+          fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/all`),
+          fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/all`),
         ]);
 
         const [users, sliders, trainers, memberships, contacts] = await Promise.all([

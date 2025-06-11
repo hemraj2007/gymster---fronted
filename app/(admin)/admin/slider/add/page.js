@@ -21,7 +21,7 @@ export default function AddSlider() {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/slider/add", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/slider/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

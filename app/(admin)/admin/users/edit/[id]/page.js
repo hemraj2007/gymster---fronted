@@ -22,7 +22,7 @@ const EditUserPage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`http://127.0.0.1:8000/users/user/${id}`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/user/${id}`);
         setFormData(res.data);
       } catch (err) {
         console.error("Failed to fetch user", err);
@@ -41,7 +41,7 @@ const EditUserPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://127.0.0.1:8000/users/update_profile/${id}`, {
+      await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/update_profile/${id}`, {
         ...formData,
         id: parseInt(id), // 🟢 Pass the `id` because your update API might need it in body
         updated_at: new Date().toISOString(),

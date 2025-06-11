@@ -19,7 +19,7 @@ export default function AddClass() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://127.0.0.1:8000/classes/add", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classes/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

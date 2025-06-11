@@ -24,7 +24,7 @@ export default function TrainerEditPage() {
 
   const fetchTrainerDetails = async () => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/trainers/get_trainer_by_id/${id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/get_trainer_by_id/${id}`);
       if (!res.ok) throw new Error("Failed to fetch trainer");
       const data = await res.json();
       setTrainerData(data);
@@ -43,7 +43,7 @@ export default function TrainerEditPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/trainers/update/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

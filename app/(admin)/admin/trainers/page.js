@@ -15,7 +15,7 @@ export default function TrainerManager() {
 
   const fetchTrainers = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/trainers/all_trainers");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/all_trainers`);
       const data = await res.json();
       setTrainers(data);
     } catch (error) {
@@ -27,7 +27,7 @@ export default function TrainerManager() {
     const confirmDelete = window.confirm("Are you sure you want to delete this trainer?");
     if (confirmDelete) {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/trainers/delete/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/delete/${id}`, {
           method: "DELETE",
         });
 

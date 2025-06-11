@@ -25,7 +25,7 @@ export default function TrainerAdd() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/trainers/add", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/trainers/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -15,7 +15,7 @@ export default function EditStaticPage() {
   useEffect(() => {
     const fetchStaticData = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/static_manager/get_static_by_id/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/static_manager/get_static_by_id/${id}`);
         if (!res.ok) throw new Error("Failed to fetch");
 
         const data = await res.json();
@@ -44,7 +44,7 @@ export default function EditStaticPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/static_manager/update_static/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/static_manager/update_static/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

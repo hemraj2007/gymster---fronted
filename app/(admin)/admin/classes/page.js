@@ -9,7 +9,7 @@ export default function ClassesPage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/classes/all")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classes/all`)
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
@@ -18,7 +18,7 @@ export default function ClassesPage() {
     const confirm = window.confirm("Are you sure you want to delete this class?");
     if (!confirm) return;
 
-    const res = await fetch(`http://127.0.0.1:8000/classes/delete/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classes/delete/${id}`, {
       method: "DELETE",
     });
     if (res.ok) {

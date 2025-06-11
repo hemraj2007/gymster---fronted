@@ -17,7 +17,7 @@ export default function EditSlider() {
   useEffect(() => {
     const fetchSlider = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/slider/get/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/slider/get/${id}`);
         if (!res.ok) throw new Error("Failed to fetch");
 
         const data = await res.json();
@@ -48,7 +48,7 @@ export default function EditSlider() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/slider/update/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/slider/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

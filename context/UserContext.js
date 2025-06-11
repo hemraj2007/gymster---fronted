@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       // Step 1: Attempt login
-      const response = await axios.post('${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login', {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
         email,
         password,
       });
@@ -41,7 +41,7 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem('token', access_token);
       setToken(access_token);
 
-      const profileResponse = await axios.get('${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile', {
+      const profileResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile`, {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
@@ -86,7 +86,7 @@ export const UserProvider = ({ children }) => {
     }
 
     try {
-      const response = await axios.get('${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile', {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

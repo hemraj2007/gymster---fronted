@@ -29,7 +29,7 @@ export default function AdminProfile() {
     const token = localStorage.getItem("token");
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/users/update_profile/${userInfo.id}`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/update_profile/${userInfo.id}`,
         {
           method: "PUT",
           headers: {

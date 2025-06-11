@@ -10,7 +10,7 @@ export default function MembershipPage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/membership_plans/all") // ✅ Fixed URL
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/all`) // ✅ Fixed URL
       .then((res) => res.json())
       .then((data) => {
         const list = Array.isArray(data) ? data : data.data || [];
@@ -24,7 +24,7 @@ export default function MembershipPage() {
 
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete?")) {
-      await fetch(`http://127.0.0.1:8000/membership_plans/delete/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/delete/${id}`, {
         method: "DELETE",
       });
       setMemberships((prev) => prev.filter((m) => m.id !== id));

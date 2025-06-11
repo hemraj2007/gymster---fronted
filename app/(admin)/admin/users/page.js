@@ -18,7 +18,7 @@ const UsersManager = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/users/users");
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/users`);
       setUsers(res.data);
     } catch (err) {
       console.error("Error fetching users", err);
@@ -30,7 +30,7 @@ const UsersManager = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://127.0.0.1:8000/users/user/${id}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/user/${id}`);
       alert("User deleted successfully!");
       fetchUsers();
     } catch (err) {

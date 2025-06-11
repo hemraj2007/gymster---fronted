@@ -27,7 +27,7 @@ export default function EditClass() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/classes/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classes/${id}`);
         if (!res.ok) throw new Error("Failed to fetch class data");
 
         const data = await res.json();
@@ -51,7 +51,7 @@ export default function EditClass() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://127.0.0.1:8000/classes/update/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classes/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

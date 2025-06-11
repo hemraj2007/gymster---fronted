@@ -7,7 +7,7 @@ export default function ProfileManager() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/admin_profile/all")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin_profile/all`)
       .then((res) => res.json())
       .then((data) => setProfiles(data))
       .catch((error) => console.error("Fetch failed:", error));

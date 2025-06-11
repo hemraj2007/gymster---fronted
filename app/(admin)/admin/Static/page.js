@@ -12,7 +12,7 @@ export default function StaticManagerPage() {
   // Fetch static data
   const fetchStatics = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/static_manager/aal_static");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/static_manager/aal_static`);
       const data = await res.json();
       setStatics(data);
     } catch (err) {
@@ -27,7 +27,7 @@ export default function StaticManagerPage() {
   // Handle delete
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/static_manager/delete_static${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/static_manager/delete_static${id}`, {
         method: "DELETE",
       });
       if (res.ok) {

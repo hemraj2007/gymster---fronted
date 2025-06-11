@@ -22,7 +22,7 @@ export default function EditProfilePage() {
   });
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/admin_profile/${id}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin_profile/${id}`)
       .then((res) => res.json())
       .then((data) => setFormData(data))
       .catch(() => toast.error("Failed to load profile details"));
@@ -39,7 +39,7 @@ export default function EditProfilePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://127.0.0.1:8000/admin_profile/update/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin_profile/update/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
