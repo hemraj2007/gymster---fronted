@@ -1,5 +1,7 @@
 "use client";
+
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 import React, { useEffect, useContext, useState } from "react";
 import Link from "next/link";
@@ -7,7 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { BsBagCheckFill } from "react-icons/bs";
 import { UserContext } from "@/context/UserContext";
 
-const SuccessPay = () => {
+const SuccessPayPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user, token, loading: userLoading } = useContext(UserContext);
@@ -19,7 +21,7 @@ const SuccessPay = () => {
 
   useEffect(() => {
     const runConfetti = () => {
-      // Optional: confetti animation if needed
+      // Optional confetti animation
     };
 
     const createSubscription = async () => {
@@ -37,19 +39,16 @@ const SuccessPay = () => {
           return;
         }
 
-        // Fetch all plans
         const plansResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/all`);
         if (!plansResponse.ok) throw new Error("Failed to fetch plans");
         const allPlans = await plansResponse.json();
 
-        // Find selected plan
         const planData = allPlans.find((plan) => plan.id == planId);
         if (!planData) throw new Error("Plan not found");
 
         const startDate = new Date();
         const expiryDate = new Date();
 
-        // Set expiry based on duration
         if (planData.name.toLowerCase().includes("year")) {
           expiryDate.setFullYear(expiryDate.getFullYear() + 1);
         } else if (planData.name.toLowerCase().includes("month")) {
@@ -68,9 +67,9 @@ const SuccessPay = () => {
           membership_id: planId,
           start_date: startDate.toISOString().split("T")[0],
           expiry_date: expiryDate.toISOString().split("T")[0],
-          subtotal: subtotal,
-          discount: discount,
-          total: total,
+          subtotal,
+          discount,
+          total,
           promocode: discountText,
           payment_status: "paid",
         };
@@ -137,13 +136,13 @@ const SuccessPay = () => {
   }
 
   return (
-    <div className="success flex flex-col items-center justify-center min-h-screen text-center px-4">
-      <p className="icon text-green-500 mb-4">
+    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
+      <p className="text-green-500 mb-4">
         <BsBagCheckFill size={80} />
       </p>
       <h1 className="text-3xl font-bold mb-2">Thank you for your order!</h1>
       <p className="text-gray-600">Check your email inbox for the receipt.</p>
-      <p className="description text-gray-500 mt-2 mb-4">
+      <p className="text-gray-500 mt-2 mb-4">
         Your membership has been activated successfully.
       </p>
       <Link href="/dashboard">
@@ -155,4 +154,4 @@ const SuccessPay = () => {
   );
 };
 
-export default SuccessPay;
+export default SuccessPayPage;
