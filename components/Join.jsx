@@ -4,8 +4,7 @@ import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import Link from 'next/link';
 
-// ✅ Step 1: Named component banao
-function LoginPage() {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -57,10 +56,7 @@ function LoginPage() {
       </p>
     </div>
   );
-}
+};
 
-// ✅ Step 2: Explicit display name add karo (optional agar above structure use kar rahe ho)
-LoginPage.displayName = "LoginPage";
-
-// ✅ Step 3: Export default yaha karo
+LoginPage.displayName = 'LoginPage'; // Added displayName here
 export default LoginPage;
