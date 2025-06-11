@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import Link from 'next/link';
 
-const LoginPage = () => {
+// ✅ Step 1: Named component banao
+function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -56,9 +57,10 @@ const LoginPage = () => {
       </p>
     </div>
   );
-};
+}
 
-// 👇👇 Yeh line add kar do error hatane ke liye
+// ✅ Step 2: Explicit display name add karo (optional agar above structure use kar rahe ho)
 LoginPage.displayName = "LoginPage";
 
+// ✅ Step 3: Export default yaha karo
 export default LoginPage;
