@@ -49,7 +49,7 @@ const LoginPage = () => {
       </form>
 
       <p className="login-signup-text">
-        Don&apos;t have an account?{' '}
+        Don't have an account?{' '}
         <Link href="/signup">
           <button type="button" className="signup-button">Sign Up</button>
         </Link>
@@ -58,7 +58,7 @@ const LoginPage = () => {
   );
 };
 
-// ✅ Giving displayName (optional but removes the error if needed)
-LoginPage.displayName = 'LoginPage';
+// 👇👇 Yeh line add kar do error hatane ke liye
+LoginPage.displayName = "LoginPage";
 
 export default LoginPage;
