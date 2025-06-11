@@ -13,47 +13,74 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await login(email, password);
-    if (success) {
-      router.push('/profile');
-    } else {
-      setError('Invalid email or password');
+    try {
+      const success = await login(email, password);
+      if (success) {
+        router.push('/profile');
+      } else {
+        setError('Invalid email or password');
+      }
+    } catch (err) {
+      setError('An error occurred during login');
     }
   };
 
   return (
     <div className="login-container">
-      <h2 className="login-title">Login</h2>
-      {error && <div className="login-error">{error}</div>}
+      <h1 className="login-title">Welcome Back</h1>
+      <h2 className="login-subtitle">Login to your account</h2>
+      
+      {error && (
+        <div className="login-error-message">
+          {error}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="login-form">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-          className="login-input"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-          className="login-input"
-        />
+        <div className="form-group">
+          <label htmlFor="email" className="input-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            required
+            className="login-input"
+            autoComplete="username"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password" className="input-label">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+            required
+            className="login-input"
+            autoComplete="current-password"
+          />
+        </div>
+
         <button type="submit" className="login-button">
-          Login
+          Sign In
         </button>
       </form>
 
-      <p className="login-signup-text">
-        Don't have an account?{' '}
-        <Link href="/signup" className="signup-link">
-          <span className="signup-text">Sign Up</span>
+      <div className="auth-footer">
+        <p className="auth-footer-text">
+          Don't have an account?{' '}
+          <Link href="/signup" className="auth-footer-link">
+            Sign up now
+          </Link>
+        </p>
+        <Link href="/forgot-password" className="forgot-password-link">
+          Forgot password?
         </Link>
-      </p>
+      </div>
     </div>
   );
 }
