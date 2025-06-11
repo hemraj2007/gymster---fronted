@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import Link from 'next/link';
 
-const LoginPage = () => {
+export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -50,13 +50,10 @@ const LoginPage = () => {
 
       <p className="login-signup-text">
         Don't have an account?{' '}
-        <Link href="/signup">
-          <button type="button" className="signup-button">Sign Up</button>
+        <Link href="/signup" className="signup-link">
+          <span className="signup-text">Sign Up</span>
         </Link>
       </p>
     </div>
   );
-};
-
-LoginPage.displayName = 'LoginPage'; // Added displayName here
-export default LoginPage;
+}
