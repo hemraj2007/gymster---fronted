@@ -14,12 +14,10 @@ export default function MembershipPlans() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // ✅ Fetch all plans
         const plansRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership_plans/all`);
         const plansData = await plansRes.json();
         setPlans(Array.isArray(plansData) ? plansData : plansData.data || []);
 
-        // ✅ Fetch user subscription if logged in
         if (user?.id) {
           const subsRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/membership/user/${user.id}`);
           const subsData = await subsRes.json();
@@ -28,8 +26,8 @@ export default function MembershipPlans() {
           }
         }
       } catch (err) {
-        console.error("Data fetch nahi ho paya", err);
-        toast.error("Kuch gadbad ho gayi. Phir try karo");
+        console.error("Failed to fetch data", err);
+        toast.error("Something went wrong. Please try again.");
       }
     };
 
@@ -39,13 +37,13 @@ export default function MembershipPlans() {
   const handleAction = async (plan) => {
     const token = localStorage.getItem("token");
     if (!token) {
-      toast.error("Pehle login karo!");
+      toast.error("Please log in first!");
       router.push("/join");
       return;
     }
 
     if (currentPlan?.membership_id === plan.id) {
-      toast("Ye plan aap already le chuke ho");
+      toast("You already have this plan.");
       return;
     }
 
@@ -65,14 +63,14 @@ export default function MembershipPlans() {
         }),
       });
 
-      if (!res.ok) throw new Error("Payment shuru nahi ho paya");
+      if (!res.ok) throw new Error("Unable to initiate payment.");
 
       const { id: sessionId } = await res.json();
-      toast.loading("Payment page pe redirect ho rahe hain...");
+      toast.loading("Redirecting to payment page...");
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
       console.error("Payment error:", error);
-      toast.error("Payment fail ho gaya. Phir try karo");
+      toast.error("Payment failed. Please try again.");
     }
   };
 
@@ -83,11 +81,11 @@ export default function MembershipPlans() {
   return (
     <div className="membership-container">
       <div className="text-center mb-5">
-        <h2 className="text-uppercase mb-3">Apna Fitness Journey Shuru Karein</h2>
+        <h2 className="text-uppercase mb-3">Start Your Fitness Journey</h2>
         {currentPlan ? (
           <div className="current-plan-banner mb-4 p-3 bg-light rounded">
             <h4>
-              Aapka Current Plan:{" "}
+              Your Current Plan:{" "}
               <strong>{plans.find(p => p.id === currentPlan.membership_id)?.name}</strong>
             </h4>
             <p>
@@ -96,7 +94,7 @@ export default function MembershipPlans() {
           </div>
         ) : (
           <p className="lead mb-4">
-            Aaj hi apna perfect plan chuno aur fitness goals achieve karo!
+            Choose your perfect plan today and crush your fitness goals!
           </p>
         )}
       </div>
@@ -119,7 +117,7 @@ export default function MembershipPlans() {
 
                 {isCurrent && (
                   <div className="current-plan-badge">
-                    Aapka Current Plan
+                    Your Current Plan
                   </div>
                 )}
 
@@ -130,7 +128,7 @@ export default function MembershipPlans() {
                   <h5 className="plan-price">₹{finalPrice}</h5>
                   {hasDiscount && (
                     <span className="discount-badge">
-                      {plan.discount}% Bachat
+                      {plan.discount}% OFF
                     </span>
                   )}
                 </div>
@@ -141,7 +139,7 @@ export default function MembershipPlans() {
                   <p><i className="bi bi-check-circle me-2"></i>Free Fitness Assessment</p>
                   <p><i className="bi bi-check-circle me-2"></i>
                     {plan.duration === "Yearly" ? "12" :
-                      plan.duration === "Half Yearly" ? "6" : "1"} Personal Training
+                      plan.duration === "Half Yearly" ? "6" : "1"} Personal Training Sessions
                   </p>
                 </div>
 
@@ -151,13 +149,13 @@ export default function MembershipPlans() {
                   disabled={isCurrent}
                 >
                   {isCurrent ? "Active Plan" :
-                    isUpgrade ? "Upgrade Karo" : "Subscribe Karo"}
+                    isUpgrade ? "Upgrade Now" : "Subscribe Now"}
                 </button>
 
                 {isUpgrade && (
                   <p className="upgrade-benefit mt-2">
                     <i className="bi bi-arrow-up-circle-fill text-success"></i>{" "}
-                    Is plan mein upgrade karke faida uthao!
+                    Upgrade to enjoy more benefits!
                   </p>
                 )}
               </div>
@@ -167,9 +165,9 @@ export default function MembershipPlans() {
       </div>
 
       <div className="text-center mt-5">
-        <h4 className="mb-3">Abhi bhi soch rahe ho?</h4>
+        <h4 className="mb-3">Still thinking?</h4>
         <p>
-          "Ek baar start kar do, motivation khud aa jayega. Aaj ka decision kal ki better life ka foundation hai!"
+          &quot;Just get started – motivation will follow. Today’s decision builds your better tomorrow.&quot;
         </p>
       </div>
     </div>
