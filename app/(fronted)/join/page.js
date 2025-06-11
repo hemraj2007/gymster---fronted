@@ -1,11 +1,9 @@
-import Join from '@/components/Join'
+import Join from '@/components/Join';
 
-
-export default function  (){
-    return(
-        <>
-            <Join/>
-        </>
-       
-    )
+export default function JoinPage() {
+  return (
+    <>
+      <Join />
+    </>
+  );
 }
